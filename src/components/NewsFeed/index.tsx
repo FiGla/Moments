@@ -1,13 +1,30 @@
 import React from 'react';
-import {View, ScrollView, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet, RefreshControl} from 'react-native';
 import {NewsFeed} from '../../models';
 import NewsFeedItem from './NewsFeedItem';
 
-type NewsFeedComponentProp = {newsFeed: NewsFeed[]};
+type NewsFeedComponentProp = {
+  newsFeed: NewsFeed[];
+  refreshing: boolean;
+  toggleRefresh: (isRefreshing: boolean) => {};
+};
 
-const NewsFeedComponent = ({newsFeed}: NewsFeedComponentProp) => {
+const NewsFeedComponent = ({
+  newsFeed,
+  refreshing,
+  toggleRefresh,
+}: NewsFeedComponentProp) => {
+  const onRefresh = React.useCallback(() => {
+    if (!refreshing) {
+      toggleRefresh(true);
+    }
+  }, [toggleRefresh, refreshing]);
+
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       <View style={styles.container}>
         {newsFeed.map((n, i) => (
           <NewsFeedItem newsFeed={n} key={`newsFeed-${i}`} />

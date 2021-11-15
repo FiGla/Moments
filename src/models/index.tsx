@@ -36,6 +36,7 @@ export type NewsFeedState = {
 
 export type State = {
   newsFeed: NewsFeedState;
+  uiFlags: UIState;
 };
 
 export type DispatchParam = {
@@ -48,4 +49,8 @@ export type RootStackParamList = {
   Details: {
     newsFeed: NewsFeed;
   };
+};
+
+export type UIState = {
+  isRefreshing: boolean;
 };
