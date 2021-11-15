@@ -1,4 +1,4 @@
-import {NewsFeed, NewsFeedResponse} from '../../models';
+import {NewsFeedState, NewsFeedResponse} from '../../models';
 import {
   FETCH_NEWS_FEED,
   FETCH_NEWS_FEED_DONE,
@@ -6,7 +6,7 @@ import {
 } from '../actions/actionTypes';
 
 export const newsFeedReducer = (
-  state: NewsFeed[] = [],
+  state: NewsFeedState = {loading: false},
   action: NewsFeedResponse,
 ) => {
   switch (action.type) {
