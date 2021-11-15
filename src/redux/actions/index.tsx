@@ -1,3 +1,3 @@
-import {fetchNewsFeedAction} from './newsFeed';
+import {fetchNewsFeedAction, searchNewsFeedAction} from './newsFeed';
 
-export {fetchNewsFeedAction};
+export {fetchNewsFeedAction, searchNewsFeedAction};

@@ -7,4 +7,7 @@ const getNewsFeedFromApi = () => {
   return axios.get(baseUrl);
 };
 
-export {getNewsFeedFromApi};
+const searchNewsFeed = (searchText: string) => {
+  return axios.get(`${baseUrl}&q=${searchText}`);
+};
+export {getNewsFeedFromApi, searchNewsFeed};

@@ -1,16 +1,23 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {LinearProgress} from 'react-native-elements';
-import {fetchNewsFeedAction} from '../redux/actions';
+import {fetchNewsFeedAction, searchNewsFeedAction} from '../redux/actions';
 import {NewsFeed as NewsFeedComponent, ErrorScreen} from '../components';
 import {NewsFeedState, State} from '../models';
+import SearchBarComponent from '../components/SearchBar';
+import {View} from 'react-native';
 
 type NewsFeedContainerProps = {
   fetchNewsFeed: () => {};
+  searchNewsFeed: (searchText: string) => {};
   data: NewsFeedState;
 };
 
-const NewsFeedContainer = ({fetchNewsFeed, data}: NewsFeedContainerProps) => {
+const NewsFeedContainer = ({
+  fetchNewsFeed,
+  searchNewsFeed,
+  data,
+}: NewsFeedContainerProps) => {
   useEffect(() => {
     fetchNewsFeed();
   }, [fetchNewsFeed]);
@@ -19,16 +26,24 @@ const NewsFeedContainer = ({fetchNewsFeed, data}: NewsFeedContainerProps) => {
     return <ErrorScreen errorMessage={data.error} />;
   }
 
-  if (data.loading || !data.data) {
-    return <LinearProgress color="primary" />;
-  }
-
-  return data.data && <NewsFeedComponent newsFeed={data.data.results} />;
+  return (
+    <View>
+      <SearchBarComponent
+        loadData={searchNewsFeed}
+        fetchOriginalData={fetchNewsFeed}
+      />
+      {data.loading && <LinearProgress color="primary" />}
+      {data.data && <NewsFeedComponent newsFeed={data.data.results} />}
+    </View>
+  );
 };
 
 const mapStateToProps = (state: State) => ({
   data: state.newsFeed,
 });
 
-const mapDispatchToProps = {fetchNewsFeed: fetchNewsFeedAction};
+const mapDispatchToProps = {
+  fetchNewsFeed: fetchNewsFeedAction,
+  searchNewsFeed: searchNewsFeedAction,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(NewsFeedContainer);
