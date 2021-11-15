@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {Text, Card, Button} from 'react-native-elements';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {Card} from 'react-native-elements';
 import {NewsFeed, RootStackParamList} from '../../models';
 import {StackNavigationProp} from '@react-navigation/stack';
 
@@ -15,32 +15,25 @@ const NewsFeedItem = ({newsFeed}: NewsFeedItemProp) => {
 
   const newsFeedImage = () =>
     newsFeed.image_url ? (
-      <Card.Image
-        style={styles.image}
-        source={{
-          uri: newsFeed.image_url,
-        }}
-      />
-    ) : null;
-
-  const newsFeedDescription = () =>
-    newsFeed.description ? (
-      <Text numberOfLines={3} style={styles.description}>
-        {newsFeed.description}
-      </Text>
+      <>
+        <Card.Divider />
+        <Card.Image
+          style={styles.image}
+          source={{
+            uri: newsFeed.image_url,
+          }}
+        />
+      </>
     ) : null;
 
   return (
-    <Card>
-      <Card.Title>{newsFeed.title}</Card.Title>
-      <Card.Divider />
-      {newsFeedImage()}
-      {newsFeedDescription()}
-      <Button
-        title="READ"
-        onPress={() => navigation.navigate('Details', {newsFeed})}
-      />
-    </Card>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Details', {newsFeed})}>
+      <Card>
+        <Card.Title>{newsFeed.title}</Card.Title>
+        {newsFeedImage()}
+      </Card>
+    </TouchableOpacity>
   );
 };
 
