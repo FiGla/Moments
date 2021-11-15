@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {View, ScrollView, StyleSheet, Image, Text} from 'react-native';
 import {Divider} from 'react-native-elements';
 import {NewsFeed} from '../../models';
@@ -18,6 +19,8 @@ const NewsFeedDetails = ({
     params: {newsFeed},
   },
 }: NewsFeedDetailsProp) => {
+  const {t} = useTranslation();
+
   const newsFeedImage = () =>
     newsFeed.image_url ? (
       <Image
@@ -42,7 +45,7 @@ const NewsFeedDetails = ({
       {newsFeed.creator && (
         <View style={styles.creators}>
           <Text style={styles.creatorsNames}>
-            Author(s):
+            {t('authors')}
             {newsFeed.creator.map(
               (name, index) =>
                 ` ${name} ${index < newsFeed.creator.length - 1 ? ',' : ''}`,
@@ -50,7 +53,9 @@ const NewsFeedDetails = ({
           </Text>
         </View>
       )}
-      <Text style={styles.publishedDate}>Published At: {newsFeed.pubDate}</Text>
+      <Text style={styles.publishedDate}>
+        {t('publishAt')} {newsFeed.pubDate}
+      </Text>
     </View>
   );
 

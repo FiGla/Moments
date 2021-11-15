@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import {Searchbar} from 'react-native-paper';
 
 const WAIT_TIME = 2000;
@@ -10,6 +11,8 @@ const SearchBarComponent = ({
   loadData,
   fetchOriginalData,
 }: SearchBarComponentProps) => {
+  const {t} = useTranslation();
+
   const [search, setSearch] = useState<string>('');
   const [timer, setTimer] = useState<any>();
 
@@ -25,7 +28,7 @@ const SearchBarComponent = ({
 
   return (
     <Searchbar
-      placeholder="Type Here..."
+      placeholder={t('searchPlaceholder')}
       onChangeText={updateSearch}
       value={search}
     />

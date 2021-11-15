@@ -1,3 +1,4 @@
 import NewsFeedContainer from './NewsFeedContainer';
+import MainScreen from './MainScreen';
 
-export {NewsFeedContainer};
+export {NewsFeedContainer, MainScreen};

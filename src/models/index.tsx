@@ -45,7 +45,7 @@ export type DispatchParam = {
 };
 
 export type RootStackParamList = {
-  News: undefined;
+  Home: undefined;
   Details: {
     newsFeed: NewsFeed;
   };
@@ -53,4 +53,11 @@ export type RootStackParamList = {
 
 export type UIState = {
   isRefreshing: boolean;
+};
+
+export type BottomTabParamList = {
+  News: undefined;
+  Setting: {
+    newsFeed: NewsFeed;
+  };
 };
