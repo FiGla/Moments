@@ -1,12 +1,18 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Text, Card, Button} from 'react-native-elements';
-import {NewsFeed} from '../../models';
+import {NewsFeed, RootStackParamList} from '../../models';
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type detailsScreenProp = StackNavigationProp<RootStackParamList, 'Details'>;
 
 type NewsFeedItemProp = {
   newsFeed: NewsFeed;
 };
 const NewsFeedItem = ({newsFeed}: NewsFeedItemProp) => {
+  const navigation = useNavigation<detailsScreenProp>();
+
   const newsFeedImage = () =>
     newsFeed.image_url ? (
       <Card.Image
@@ -30,7 +36,10 @@ const NewsFeedItem = ({newsFeed}: NewsFeedItemProp) => {
       <Card.Divider />
       {newsFeedImage()}
       {newsFeedDescription()}
-      <Button title="READ" />
+      <Button
+        title="READ"
+        onPress={() => navigation.navigate('Details', {newsFeed})}
+      />
     </Card>
   );
 };

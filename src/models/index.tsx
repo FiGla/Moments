@@ -42,3 +42,10 @@ export type DispatchParam = {
   type: string;
   payload?: any;
 };
+
+export type RootStackParamList = {
+  News: undefined;
+  Details: {
+    newsFeed: NewsFeed;
+  };
+};
