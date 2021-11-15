@@ -5,9 +5,8 @@ import {NewsFeed} from '../../models';
 
 type NewsFeedItemProp = {
   newsFeed: NewsFeed;
-  index: Number;
 };
-const NewsFeedItem = ({newsFeed, index}: NewsFeedItemProp) => {
+const NewsFeedItem = ({newsFeed}: NewsFeedItemProp) => {
   const newsFeedImage = () =>
     newsFeed.image_url ? (
       <Card.Image
@@ -26,7 +25,7 @@ const NewsFeedItem = ({newsFeed, index}: NewsFeedItemProp) => {
     ) : null;
 
   return (
-    <Card key={`newsFeed-${index}`}>
+    <Card>
       <Card.Title>{newsFeed.title}</Card.Title>
       <Card.Divider />
       {newsFeedImage()}

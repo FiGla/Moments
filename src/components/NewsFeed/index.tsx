@@ -10,7 +10,7 @@ const NewsFeedComponent = ({newsFeed}: NewsFeedComponentProp) => {
     <ScrollView>
       <View style={styles.container}>
         {newsFeed.map((n, i) => (
-          <NewsFeedItem newsFeed={n} index={i} />
+          <NewsFeedItem newsFeed={n} key={`newsFeed-${i}`} />
         ))}
       </View>
     </ScrollView>
