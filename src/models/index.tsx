@@ -22,3 +22,8 @@ export type NewsFeedState = {
 export type State = {
   newsFeed: NewsFeedState;
 };
+
+export type DispatchParam = {
+  type: string;
+  payload?: any;
+};
