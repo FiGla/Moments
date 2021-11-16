@@ -6,5 +6,6 @@
     "details": "Details",
     "searchPlaceholder": "Type Here ...",
     "authors": "Author(s): ",
-    "publishAt": "Published At: "
+    "publishAt": "Published At: ",
+    "darkMode": "Dark Mode"
 }

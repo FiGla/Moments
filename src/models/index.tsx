@@ -53,6 +53,7 @@ export type RootStackParamList = {
 
 export type UIState = {
   isRefreshing: boolean;
+  isDarkTheme: boolean;
 };
 
 export type BottomTabParamList = {

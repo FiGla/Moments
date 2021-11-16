@@ -4,6 +4,7 @@ import NewsFeedContainer from './NewsFeedContainer';
 import {BottomTabParamList} from '../models';
 import SettingPage from './SettingPage';
 import {useTranslation} from 'react-i18next';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -15,16 +16,28 @@ const MainScreen = () => {
       <BottomTab.Screen
         name="News"
         options={{
-          tabBarIconStyle: {display: 'none'},
           title: t('news'),
+          tabBarIcon: ({focused, color, size}) => (
+            <Ionicons
+              name={focused ? 'home' : 'home-outline'}
+              size={size}
+              color={color}
+            />
+          ),
         }}
         component={NewsFeedContainer}
       />
       <BottomTab.Screen
         name="Setting"
         options={{
-          tabBarIconStyle: {display: 'none'},
           title: t('setting'),
+          tabBarIcon: ({focused, color, size}) => (
+            <Ionicons
+              name={focused ? 'settings-sharp' : 'settings-outline'}
+              size={size}
+              color={color}
+            />
+          ),
         }}
         component={SettingPage}
       />

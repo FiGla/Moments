@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Card} from 'react-native-elements';
@@ -12,6 +12,7 @@ type NewsFeedItemProp = {
 };
 const NewsFeedItem = ({newsFeed}: NewsFeedItemProp) => {
   const navigation = useNavigation<detailsScreenProp>();
+  const {colors} = useTheme();
 
   const newsFeedImage = () =>
     newsFeed.image_url ? (
@@ -29,7 +30,7 @@ const NewsFeedItem = ({newsFeed}: NewsFeedItemProp) => {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('Details', {newsFeed})}>
-      <Card>
+      <Card containerStyle={{backgroundColor: colors.card}}>
         <Card.Title>{newsFeed.title}</Card.Title>
         {newsFeedImage()}
       </Card>

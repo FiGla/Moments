@@ -1,4 +1,9 @@
 import {fetchNewsFeedAction, searchNewsFeedAction} from './newsFeed';
-import {toggleRefreshAction} from './ui';
+import {toggleRefreshAction, toggleThemeAction} from './ui';
 
-export {fetchNewsFeedAction, searchNewsFeedAction, toggleRefreshAction};
+export {
+  fetchNewsFeedAction,
+  searchNewsFeedAction,
+  toggleRefreshAction,
+  toggleThemeAction,
+};

@@ -2,6 +2,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {View, ScrollView, StyleSheet, Image, Text} from 'react-native';
 import {Divider} from 'react-native-elements';
+import {useTheme} from '@react-navigation/native';
 import {NewsFeed} from '../../models';
 
 type NewsFeedDetailsProp = {
@@ -20,6 +21,7 @@ const NewsFeedDetails = ({
   },
 }: NewsFeedDetailsProp) => {
   const {t} = useTranslation();
+  const {colors} = useTheme();
 
   const newsFeedImage = () =>
     newsFeed.image_url ? (
@@ -33,18 +35,18 @@ const NewsFeedDetails = ({
 
   const newsFeedDescription = () =>
     newsFeed.full_description || newsFeed.description ? (
-      <Text style={styles.description}>
+      <Text style={[styles.description, {color: colors.text}]}>
         {newsFeed.full_description || newsFeed.description}
       </Text>
     ) : null;
 
   const renderHeader = () => (
     <View style={styles.headerContainer}>
-      <Text style={styles.title}>{newsFeed.title}</Text>
+      <Text style={[styles.title, {color: colors.text}]}>{newsFeed.title}</Text>
       <Divider />
       {newsFeed.creator && (
         <View style={styles.creators}>
-          <Text style={styles.creatorsNames}>
+          <Text style={[styles.creatorsNames, {color: colors.text}]}>
             {t('authors')}
             {newsFeed.creator.map(
               (name, index) =>
@@ -53,14 +55,14 @@ const NewsFeedDetails = ({
           </Text>
         </View>
       )}
-      <Text style={styles.publishedDate}>
+      <Text style={[styles.publishedDate, {color: colors.text}]}>
         {t('publishAt')} {newsFeed.pubDate}
       </Text>
     </View>
   );
 
   return (
-    <ScrollView style={styles.scrollView}>
+    <ScrollView>
       <View style={styles.container}>
         {renderHeader()}
         {newsFeedImage()}
@@ -71,9 +73,6 @@ const NewsFeedDetails = ({
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'white',
-  },
   container: {
     justifyContent: 'center',
     alignItems: 'center',
