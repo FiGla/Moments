@@ -36,6 +36,7 @@ const SearchBarComponent = ({
       style={{backgroundColor: colors.card}}
       placeholderTextColor={colors.text}
       iconColor={colors.text}
+      inputStyle={{color: colors.text}}
     />
   );
 };

@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
   },
   switchButton: {alignSelf: 'center'},
   languageContainer: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingTop: 20,
